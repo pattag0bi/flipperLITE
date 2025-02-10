@@ -6,13 +6,31 @@ import { ConnectionStatus } from "./ConnectionStatus";
 import { Button } from "@/components/ui/button";
 import { Wifi, Search } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+interface Signal {
+  id: number;
+  name: string;
+  frequency: string;
+  strength: number;
+  timestamp: string;
+}
 
 export const Dashboard: FC = () => {
   const navigate = useNavigate();
   const [isConnected, setIsConnected] = useState(false);
   const { toast } = useToast();
+  const [editingSignal, setEditingSignal] = useState<Signal | null>(null);
 
-  const mockSignals = [
+  const [signals, setSignals] = useState<Signal[]>([
     {
       id: 1,
       name: "Garage Door",
@@ -34,7 +52,7 @@ export const Dashboard: FC = () => {
       strength: 30,
       timestamp: "2024-03-19 14:20",
     },
-  ];
+  ]);
 
   const handleConnect = () => {
     setIsConnected(!isConnected);
@@ -65,6 +83,27 @@ export const Dashboard: FC = () => {
     navigate("/signal-graph");
   };
 
+  const handleEditSignal = (signal: Signal) => {
+    setEditingSignal(signal);
+  };
+
+  const handleSaveEdit = () => {
+    if (!editingSignal) return;
+
+    setSignals((prevSignals) =>
+      prevSignals.map((signal) =>
+        signal.id === editingSignal.id ? editingSignal : signal
+      )
+    );
+
+    toast({
+      title: "Signal Updated",
+      description: `Successfully updated signal: ${editingSignal.name}`,
+    });
+
+    setEditingSignal(null);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <div className="container py-8">
@@ -84,13 +123,13 @@ export const Dashboard: FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          {mockSignals.map((signal) => (
+          {signals.map((signal) => (
             <SignalCard
               key={signal.id}
               {...signal}
               onPlay={() => handleSignalAction("Played", signal.name)}
               onSave={() => handleSignalAction("Saved", signal.name)}
-              onEdit={() => handleSignalAction("Edited", signal.name)}
+              onEdit={() => handleEditSignal(signal)}
             />
           ))}
         </div>
@@ -103,6 +142,61 @@ export const Dashboard: FC = () => {
           <Search className="mr-2 h-5 w-5" />
           Start Scanning for Signals
         </Button>
+
+        <Dialog open={!!editingSignal} onOpenChange={() => setEditingSignal(null)}>
+          <DialogContent className="bg-slate-900/95 border-slate-800 text-white">
+            <DialogHeader>
+              <DialogTitle>Edit Signal</DialogTitle>
+            </DialogHeader>
+            {editingSignal && (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Signal Name</Label>
+                  <Input
+                    id="name"
+                    value={editingSignal.name}
+                    onChange={(e) =>
+                      setEditingSignal({
+                        ...editingSignal,
+                        name: e.target.value,
+                      })
+                    }
+                    className="bg-black/40 border-slate-700"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="frequency">Frequency</Label>
+                  <Input
+                    id="frequency"
+                    value={editingSignal.frequency}
+                    onChange={(e) =>
+                      setEditingSignal({
+                        ...editingSignal,
+                        frequency: e.target.value,
+                      })
+                    }
+                    className="bg-black/40 border-slate-700"
+                  />
+                </div>
+              </div>
+            )}
+            <DialogFooter>
+              <Button
+                variant="outline"
+                onClick={() => setEditingSignal(null)}
+                className="bg-black/40 border-slate-700 hover:bg-black/60"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleSaveEdit}
+                className="bg-purple-600 hover:bg-purple-700"
+              >
+                Save Changes
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
