@@ -1,69 +1,76 @@
-# Welcome to your Lovable project
 
-## Project info
+# **FlipperLite – A Low-Cost 433MHz Signal Analyzer & Emulator**  
 
-**URL**: https://lovable.dev/projects/93491282-37be-4550-a46d-0813230a1582
+## **Overview**  
+FlipperLite is a **low-cost alternative to the Flipper Zero**, built using an **ESP32** to **analyze, capture, and emulate 433MHz signals**. It connects seamlessly to a **mobile app** over **Wi-Fi/Bluetooth**, allowing users to **save, edit, rename, and manage** signals through a **gamified interface**.  
 
-## How can I edit this code?
+## **Features**  
+### **ESP32 Firmware**  
+✅ Capture & decode **433MHz RF signals**  
+✅ Save & replay signals on demand  
+✅ Communicate with the mobile app over **Wi-Fi/Bluetooth**  
 
-There are several ways of editing your application.
+### **Mobile App**  
+✅ **Gamified UI** for managing signals (save, rename, edit)  
+✅ Real-time connectivity with ESP32  
+✅ Secure & scalable architecture for future expansions  
 
-**Use Lovable**
+## **Hardware Requirements**  
+- ESP32  
+- RF Receiver (433MHz)  
+- RF Transmitter (433MHz)  
+- OLED Display (optional for standalone mode)  
+- LiPo Battery & Charging Circuit  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/93491282-37be-4550-a46d-0813230a1582) and start prompting.
+## **Software Stack**  
+### **ESP32 Firmware**  
+- **Platform:** Arduino / ESP-IDF  
+- **Libraries:** RadioHead, ESPAsyncWebServer, Wi-FiManager  
 
-Changes made via Lovable will be committed automatically to this repo.
+### **Mobile App**  
+- **Framework:** React Native / Flutter  
+- **State Management:** Redux / Provider  
+- **Networking:** WebSockets / BLE  
 
-**Use your preferred IDE**
+## **Installation & Setup**  
+### **1️⃣ Setting Up ESP32**  
+1. Flash the firmware using **Arduino IDE / ESP-IDF**.  
+2. Connect ESP32 to Wi-Fi/Bluetooth.  
+3. Attach the **433MHz receiver & transmitter**.  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### **2️⃣ Running the Mobile App**  
+1. Clone the repository.  
+   ```bash
+   git clone https://github.com/yourusername/flipperlite.git
+   cd flipperlite
+   ```
+2. Install dependencies.  
+   ```bash
+   npm install  # For React Native
+   flutter pub get  # For Flutter
+   ```
+3. Run the app on your device.  
+   ```bash
+   npm run android  # React Native  
+   flutter run  # Flutter  
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## **How It Works**  
+1. **Capture Signals:** The ESP32 listens for 433MHz signals and decodes them.  
+2. **Save & Edit:** Users can store, rename, and modify signals in the app.  
+3. **Replay & Emulate:** The ESP32 transmits saved signals on command.  
 
-Follow these steps:
+## **Future Improvements**  
+🚀 Expand support to other frequencies (e.g., **868MHz, 2.4GHz**).  
+🎮 Add more **gamification elements** like badges and unlockable tools.  
+🔒 Implement **encrypted signal storage** for security.  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## **Contributing**  
+Feel free to submit issues or pull requests! 🚀  
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## **License**  
+MIT License – Open-source and free to use.  
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/93491282-37be-4550-a46d-0813230a1582) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This README is **structured, engaging, and informative**. You can tweak it based on your final implementation! 🚀🔥
