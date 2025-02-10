@@ -105,7 +105,7 @@ export const Dashboard: FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-orange-900 via-orange-800 to-orange-900">
       <div className="container py-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-white">FlipperLite</h1>
@@ -113,7 +113,7 @@ export const Dashboard: FC = () => {
             <ConnectionStatus isConnected={isConnected} />
             <Button
               variant="outline"
-              className="bg-black/40 backdrop-blur-md border-slate-800"
+              className="bg-black/40 backdrop-blur-md border-orange-800 hover:bg-orange-900/60"
               onClick={handleConnect}
             >
               <Wifi className="mr-2 h-4 w-4" />
@@ -135,7 +135,7 @@ export const Dashboard: FC = () => {
         </div>
 
         <Button
-          className="w-full py-8 bg-black/40 backdrop-blur-md border-slate-800 hover:border-slate-700 hover:bg-black/60"
+          className="w-full py-8 bg-black/40 backdrop-blur-md border-orange-800 hover:border-orange-700 hover:bg-orange-900/60"
           variant="outline"
           onClick={handleStartScanning}
         >
@@ -144,7 +144,7 @@ export const Dashboard: FC = () => {
         </Button>
 
         <Dialog open={!!editingSignal} onOpenChange={() => setEditingSignal(null)}>
-          <DialogContent className="bg-slate-900/95 border-slate-800 text-white">
+          <DialogContent className="bg-orange-900/95 border-orange-800 text-white">
             <DialogHeader>
               <DialogTitle>Edit Signal</DialogTitle>
             </DialogHeader>
@@ -161,7 +161,7 @@ export const Dashboard: FC = () => {
                         name: e.target.value,
                       })
                     }
-                    className="bg-black/40 border-slate-700"
+                    className="bg-black/40 border-orange-700"
                   />
                 </div>
                 <div className="space-y-2">
@@ -175,7 +175,7 @@ export const Dashboard: FC = () => {
                         frequency: e.target.value,
                       })
                     }
-                    className="bg-black/40 border-slate-700"
+                    className="bg-black/40 border-orange-700"
                   />
                 </div>
               </div>
@@ -184,13 +184,13 @@ export const Dashboard: FC = () => {
               <Button
                 variant="outline"
                 onClick={() => setEditingSignal(null)}
-                className="bg-black/40 border-slate-700 hover:bg-black/60"
+                className="bg-black/40 border-orange-700 hover:bg-orange-900/60"
               >
                 Cancel
               </Button>
               <Button
                 onClick={handleSaveEdit}
-                className="bg-purple-600 hover:bg-purple-700"
+                className="bg-orange-600 hover:bg-orange-700"
               >
                 Save Changes
               </Button>

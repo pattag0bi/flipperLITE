@@ -36,12 +36,12 @@ const SignalGraph: FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-orange-900 via-orange-800 to-orange-900">
       <div className="container py-8">
         <div className="flex justify-between items-center mb-8">
           <Button
             variant="outline"
-            className="bg-black/40 backdrop-blur-md border-slate-800"
+            className="bg-black/40 backdrop-blur-md border-orange-800"
             onClick={() => navigate("/")}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -60,7 +60,7 @@ const SignalGraph: FC = () => {
             ) : (
               <Button
                 variant="outline"
-                className="bg-black/40 backdrop-blur-md border-slate-800"
+                className="bg-black/40 backdrop-blur-md border-orange-800"
                 onClick={handleSaveSignal}
               >
                 <Save className="mr-2 h-4 w-4" />
@@ -70,7 +70,7 @@ const SignalGraph: FC = () => {
           </div>
         </div>
 
-        <div className="bg-black/40 backdrop-blur-md border border-slate-800 rounded-lg p-6">
+        <div className="bg-black/40 backdrop-blur-md border border-orange-800 rounded-lg p-6">
           <h2 className="text-2xl font-bold text-white mb-6">Signal Scanner</h2>
           <div className="w-full overflow-x-auto">
             <LineChart
@@ -82,28 +82,28 @@ const SignalGraph: FC = () => {
               <CartesianGrid strokeDasharray="3 3" stroke="#444" />
               <XAxis
                 dataKey="time"
-                stroke="#888"
-                label={{ value: "Time", position: "bottom", fill: "#888" }}
+                stroke="#F97316"
+                label={{ value: "Time", position: "bottom", fill: "#F97316" }}
               />
               <YAxis
-                stroke="#888"
+                stroke="#F97316"
                 label={{
                   value: "Amplitude",
                   angle: -90,
                   position: "insideLeft",
-                  fill: "#888",
+                  fill: "#F97316",
                 }}
               />
               <Tooltip
                 contentStyle={{
                   backgroundColor: "rgba(0, 0, 0, 0.8)",
-                  border: "1px solid #666",
+                  border: "1px solid #F97316",
                 }}
               />
               <Line
                 type="monotone"
                 dataKey="amplitude"
-                stroke="#8B5CF6"
+                stroke="#F97316"
                 strokeWidth={2}
                 dot={false}
               />
