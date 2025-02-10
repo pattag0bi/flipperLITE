@@ -1,5 +1,6 @@
 
 import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SignalCard } from "./SignalCard";
 import { ConnectionStatus } from "./ConnectionStatus";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ import { Wifi, Search } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Dashboard: FC = () => {
+  const navigate = useNavigate();
   const [isConnected, setIsConnected] = useState(false);
   const { toast } = useToast();
 
@@ -51,6 +53,18 @@ export const Dashboard: FC = () => {
     });
   };
 
+  const handleStartScanning = () => {
+    if (!isConnected) {
+      toast({
+        title: "Connection Required",
+        description: "Please connect to a device before scanning for signals",
+        variant: "destructive",
+      });
+      return;
+    }
+    navigate("/signal-graph");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <div className="container py-8">
@@ -84,6 +98,7 @@ export const Dashboard: FC = () => {
         <Button
           className="w-full py-8 bg-black/40 backdrop-blur-md border-slate-800 hover:border-slate-700 hover:bg-black/60"
           variant="outline"
+          onClick={handleStartScanning}
         >
           <Search className="mr-2 h-5 w-5" />
           Start Scanning for Signals
